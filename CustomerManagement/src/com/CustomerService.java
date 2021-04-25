@@ -45,9 +45,9 @@ public class CustomerService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateCustomer(String customerData)
 	{
-	//Convert the input string to a JSON object
+	
 	 JsonObject customerObject = new JsonParser().parse(customerData).getAsJsonObject();
-	//Read the values from the JSON object
+	
 	 String cID = customerObject.get("cID").getAsString();
 	 String cName = customerObject.get("cName").getAsString();
 	 String cAddress = customerObject.get("cAddress").getAsString();
@@ -66,10 +66,10 @@ public class CustomerService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteCustomer(String customerData)
 	{
-	//Convert the input string to an XML document
+	
 	 Document doc = Jsoup.parse(customerData, "", Parser.xmlParser());
 
-	//Read the value from the element <itemID>
+	
 	 String cID = doc.select("cID").text();
 	 String output = customerObj.deleteCustomer(cID);
 	return output;
