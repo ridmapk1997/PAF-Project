@@ -59,7 +59,7 @@ public class FundingService {
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteFunding(String fundingData) {
-		// Convert the input string to an XML document
+		// Convert the input string to  XML 
 		Document doc = Jsoup.parse(fundingData, "", Parser.xmlParser());
 
 		// Read the value from the element <itemID>
