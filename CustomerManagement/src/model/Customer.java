@@ -14,7 +14,7 @@ public class Customer {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			// Provide the correct details: DBServer/DBName, username, password
+			
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/gb_shop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
 					"root", "");
@@ -31,11 +31,11 @@ public class Customer {
 			if (con == null) {
 				return "Error while connecting to the database for inserting.";
 			}
-			// create a prepared statement
+			
 			String query = " insert into customerp(`cID`,`cName`,`cAddress`,`pName`,`cEmail`,`cDate`,`cGender`,`cPno`)"
 					+ " values (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
-			// binding values
+			
 			preparedStmt.setInt(1, 0);
 			preparedStmt.setString(2, name);
 			preparedStmt.setString(3, address);
@@ -44,7 +44,7 @@ public class Customer {
 			preparedStmt.setString(6, date);
 			preparedStmt.setString(7, gender);
 			preparedStmt.setString(8, pno);
-			// execute the statement
+			
 			preparedStmt.execute();
 			con.close();
 			output = "Inserted successfully";
@@ -62,12 +62,12 @@ public class Customer {
 			if (con == null) {
 				return "Error while connecting to the database for reading.";
 			}
-			// Prepare the html table to be displayed
-			output = "<table border=\"1\"><tr><th>Buyer ID</th><th>Buyer's Name</th><th>Buyer's Address</th><th>Product Name</th><th>Buyer's Email</th><th>Purchase Date</th><th>Gender</th><th>Phone No</th></tr>";
+			
+			output = "<table border=\"1\"><tr><th>Client ID</th><th>Client's Name</th><th>Clint's Address</th><th>Position Name</th><th>Client's Email</th><th>Date of birth</th><th>Gender</th><th>Phone No</th></tr>";
 			String query = "select * from customerp";
 			Statement stmt = (Statement) con.createStatement();
 			ResultSet rs = ((java.sql.Statement) stmt).executeQuery(query);
-			// iterate through the rows in the result set
+			
 			while (rs.next()) {
 				String cID = Integer.toString(rs.getInt("cID"));
 				String cName = rs.getString("cName");
@@ -78,7 +78,7 @@ public class Customer {
 				String cGender = rs.getString("cGender");
 				String cPno = rs.getString("cPno");
 
-				// Add into the html table
+				
 				output += "<tr><td>" + cID + "</td>";
 				output += "<td>" + cName + "</td>";
 				output += "<td>" + cAddress + "</td>";
@@ -90,7 +90,7 @@ public class Customer {
 				
 			}
 			con.close();
-			// Complete the html table
+			
 			output += "</table>";
 		} catch (Exception e) {
 			output = "Error while reading the customer.";
@@ -110,12 +110,12 @@ public class Customer {
 				return "Error while connecting to the database for updating.";
 			}
 
-			// create a prepared statement
+			
 			String query = "UPDATE customerp SET cName=?,cAddress=?,pName=?,cEmail=?,cDate=?,cGender=?,cPno=?" + "WHERE cID=?";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
-			// binding values
+			
 			preparedStmt.setString(1, name);
 			preparedStmt.setString(2, address);
 			preparedStmt.setString(3, pname);
@@ -125,7 +125,7 @@ public class Customer {
 			preparedStmt.setString(7, pno);
 			preparedStmt.setInt(8, Integer.parseInt(ID));
 
-			// execute the statement
+			
 			preparedStmt.execute();
 			con.close();
 
@@ -148,15 +148,15 @@ public class Customer {
 				return "Error while connecting to the database for deleting.";
 			}
 
-			// create a prepared statement
+			
 			String query = "delete from customerp where cID=?";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
-			// binding values
+			
 			preparedStmt.setInt(1, Integer.parseInt(cID));
 
-			// execute the statement
+			
 			preparedStmt.execute();
 			con.close();
 
