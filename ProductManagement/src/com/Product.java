@@ -14,7 +14,7 @@ public class Product {
 	 try 
 	 { 
 	 Class.forName("com.mysql.cj.jdbc.Driver"); 
-	 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/user", 
+	 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/paf", 
 	 "root", ""); 
 	 //For testing
 	 System.out.print("Successfully connected"); 
@@ -41,7 +41,7 @@ public class Product {
 		}
 		
 		// create a prepared statement
-		String query = "insert into product (id, Code, Name, Price, Description)"
+		String query = "insert into product (ID, Code, Name, Price, Description)"
 				 + " values (?, ?, ?, ?, ?)"; 
 		PreparedStatement preparedStmt = con.prepareStatement(query); 
 		// binding values

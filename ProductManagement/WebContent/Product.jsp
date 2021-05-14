@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Product</title>
 <link rel="stylesheet" href="View/bootstrap.min.css">
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/product.js"></script>
